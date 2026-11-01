@@ -1,3 +1,4 @@
+
 package com.eventgenie.bookingservice.controller;
 
 import java.util.List;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eventgenie.bookingservice.entity.Booking;
@@ -30,6 +32,14 @@ public class BookingController {
     @PostMapping
     public Booking createBooking(@RequestBody Booking booking) {
         return bookingService.createBooking(booking);
+    }
+
+    @PostMapping("/{id}/demo-payment")
+    public Booking processDemoPayment(
+            @PathVariable Long id,
+            @RequestParam boolean success) {
+
+        return bookingService.processDemoPayment(id, success);
     }
 
     @GetMapping("/{id}")
